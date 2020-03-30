@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
-/// It defines the default colors used in the [RowItem.boolean] widget.
-/// The [positive] color will be used when the boolean parameter is TRUE,
-/// the [negative] color when it's FALSE, and when its value is considered NULL,
-/// it will pick the [empty] color.
-class IconColor {
-  static const Color positive = Colors.green;
-  static const Color negative = Colors.red;
-  static const Color empty = Colors.blueGrey;
-}
+/// Defines icon properties, used mostly inside a [RowItem.boolean] widget.
+/// These properties are [Color] and [IconData].
+///
+/// There's also a named constructor, which builds an instance
+/// based on a boolean parameter.
+class _IconProperties {
+  final Color color;
+  final IconData icon;
 
-/// This variable type helps to identify if the text is in the 'title' position,
-/// or rather in the 'description' position.
-enum TextPosition { title, description }
+  const _IconProperties({this.color, this.icon});
+
+  factory _IconProperties.fromBoolean(bool value) => _props[value];
+
+  static Map<bool, _IconProperties> _props = {
+    true: _IconProperties(color: Colors.green, icon: Icons.check_circle),
+    false: _IconProperties(color: Colors.red, icon: Icons.cancel),
+    null: _IconProperties(color: Colors.blueGrey, icon: Icons.help),
+  };
+}
 
 /// This widget has been designed to represent a text, with its associated value.
 /// The [title] widget will be located at the left of the [RowItem] widget,
@@ -64,15 +70,15 @@ class RowItem extends StatelessWidget {
   }) {
     return RowItem(
       key: key,
-      title: _text(
+      title: _buildText(
         title,
         style: titleStyle,
-        position: TextPosition.title,
+        textAlign: TextAlign.start,
       ),
-      description: _text(
+      description: _buildText(
         description,
         style: descriptionStyle,
-        position: TextPosition.description,
+        textAlign: TextAlign.end,
       ),
     );
   }
@@ -85,19 +91,19 @@ class RowItem extends StatelessWidget {
     Key key,
     TextStyle titleStyle,
     Color iconColor,
-    double size = 16,
+    double iconSize = 17,
   }) {
     return RowItem(
       key: key,
-      title: _text(
+      title: _buildText(
         title,
         style: titleStyle,
-        position: TextPosition.title,
+        textAlign: TextAlign.start,
       ),
-      description: _icon(
+      description: _buildIcon(
         icon,
-        color: iconColor,
-        size: size,
+        iconColor: iconColor,
+        iconSize: iconSize,
       ),
     );
   }
@@ -114,21 +120,18 @@ class RowItem extends StatelessWidget {
   }) {
     return RowItem(
       key: key,
-      title: _text(
+      title: _buildText(
         title,
         style: titleStyle,
-        position: TextPosition.title,
+        textAlign: TextAlign.start,
       ),
-      description: AbsorbPointer(
-        absorbing: onTap == null,
-        child: InkResponse(
-          child: _text(
-            description,
-            style: descriptionStyle,
-            position: TextPosition.description,
-            clickable: onTap != null,
-          ),
-          onTap: onTap,
+      description: InkResponse(
+        onTap: onTap,
+        child: _buildText(
+          description,
+          style: descriptionStyle,
+          textAlign: TextAlign.end,
+          clickable: onTap != null,
         ),
       ),
     );
@@ -136,42 +139,31 @@ class RowItem extends StatelessWidget {
 
   /// Returns an icon based on the [value] variable.
   /// Various [Icon] parameters can be set as well.
-  static Icon _icon(bool value, {Color color, double size}) {
-    final Color finalColor = color ??
-        (value == null
-            ? IconColor.empty
-            : (value ? IconColor.positive : IconColor.negative));
-
+  static Icon _buildIcon(bool value, {Color iconColor, double iconSize}) {
+    final _IconProperties data = _IconProperties.fromBoolean(value);
     return Icon(
-      value == null ? Icons.help : (value ? Icons.check_circle : Icons.cancel),
-      color: finalColor,
-      size: size,
+      data.icon,
+      color: iconColor ?? data.color,
+      size: iconSize,
     );
   }
 
   /// Returns a [Text] widget, using the [text] variable.
   /// It checks if can be clickable, with the [clickable] parameter.
   /// Various of its paremeters can be set.
-  static Text _text(
+  static Text _buildText(
     String text, {
     TextStyle style,
     bool clickable = false,
-    @required TextPosition position,
+    @required TextAlign textAlign,
   }) {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
-      textAlign:
-          position == TextPosition.title ? TextAlign.start : TextAlign.end,
-      style: style != null
-          ? style.copyWith(
-              decoration:
-                  clickable ? TextDecoration.underline : TextDecoration.none,
-            )
-          : TextStyle(
-              decoration:
-                  clickable ? TextDecoration.underline : TextDecoration.none,
-            ),
+      textAlign: textAlign,
+      style: TextStyle(
+        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
+      ).merge(style),
     );
   }
 }
