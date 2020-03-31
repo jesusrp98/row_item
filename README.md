@@ -8,6 +8,11 @@
 
 This package allows developers to display compat information inside a row widget.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jesusrp98/big_tip/master/screenshots/0.png" width="415" hspace="8">
+    <img src="https://raw.githubusercontent.com/jesusrp98/big_tip/master/screenshots/1.png" width="415" hspace="8">
+</p>
+
 As a highly customizable widget, you can place as a title and description whatever you want. But the preferred way to use this package is using a `Text` widget as the 'title', and another `Text` or `Icon` widget as the 'description' portion of the view.
 
 You can check the of these examples down below.
