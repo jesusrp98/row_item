@@ -1,5 +1,5 @@
 name: row_item
-description: Allows to display compat information inside a row.
+description: Display compat information by using two widgets separated inside a row widget.
 version: 1.0.0
 homepage: https://github.com/jesusrp98/row_item
 
