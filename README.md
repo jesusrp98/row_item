@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/jesusrp98/row_item.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
 [![Stars](https://img.shields.io/github/stars/jesusrp98/row_item.svg?style=for-the-badge)](https://github.com/jesusrp98/row_item/stargazers)
-[![Build](https://img.shields.io/github/workflow/status/jesusrp98/row_item/flutter_ci?style=for-the-badge)](https://github.com/jesusrp98/row_item/actions)
+[![Build](https://img.shields.io/github/workflow/status/jesusrp98/row_item/flutter_package?style=for-the-badge)](https://github.com/jesusrp98/row_item/actions)
 
 This package allows developers to display compat information inside a row widget.
 
