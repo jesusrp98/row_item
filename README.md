@@ -1,10 +1,9 @@
 # Row Item
 
 [![Package](https://img.shields.io/pub/v/row_item.svg?style=for-the-badge)](https://pub.dartlang.org/packages/row_item)
-[![License](https://img.shields.io/github/license/jesusrp98/row_item.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Build](https://img.shields.io/github/workflow/status/jesusrp98/row_item/Flutter%20Package%20CI?style=for-the-badge)](https://github.com/jesusrp98/row_item/actions)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
-[![Stars](https://img.shields.io/github/stars/jesusrp98/row_item.svg?style=for-the-badge)](https://github.com/jesusrp98/row_item/stargazers)
-[![Build](https://img.shields.io/github/workflow/status/jesusrp98/row_item/flutter_package?style=for-the-badge)](https://github.com/jesusrp98/row_item/actions)
+[![License](https://img.shields.io/github/license/jesusrp98/row_item.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 This package allows developers to display compat information inside a row widget.
 
@@ -32,7 +31,7 @@ RowItem(
 )
 ```
 
-### RowItem.text
+### RowItem.tex
 
 The text variant simplifies the action of display text information inside the widget. It also has styles for both title and description text labels.
 
