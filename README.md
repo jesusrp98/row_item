@@ -24,7 +24,6 @@ RowItem(
     title: Text('title'),
     description: Text('description'),
 )
-
 ```
 
 ### RowItem.text
@@ -36,7 +35,6 @@ RowItem.text(
   'title',
   'description',
 )
-
 ```
 
 ### RowItem.boolean
@@ -48,7 +46,6 @@ RowItem.boolean(
   'Displays a checked icon',
   true,
 )
-
 ```
 
 ### RowItem.tap
