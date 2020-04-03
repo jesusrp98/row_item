@@ -31,7 +31,7 @@ RowItem(
 )
 ```
 
-### RowItem.tex
+### RowItem.text
 
 The text variant simplifies the action of display text information inside the widget. It also has styles for both title and description text labels.
 
