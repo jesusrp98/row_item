@@ -9,14 +9,14 @@ class _IconProperties {
   final Color color;
   final IconData icon;
 
-  const _IconProperties({this.color, this.icon});
+  const _IconProperties(this.icon, this.color);
 
   factory _IconProperties.fromBoolean(bool value) => _props[value];
 
   static Map<bool, _IconProperties> _props = {
-    true: _IconProperties(color: Colors.green, icon: Icons.check_circle),
-    false: _IconProperties(color: Colors.red, icon: Icons.cancel),
-    null: _IconProperties(color: Colors.blueGrey, icon: Icons.help),
+    true: _IconProperties(Icons.check_circle, Colors.green),
+    false: _IconProperties(Icons.cancel, Colors.red),
+    null: _IconProperties(Icons.help, Colors.blueGrey),
   };
 }
 
@@ -67,18 +67,24 @@ class RowItem extends StatelessWidget {
     Key key,
     TextStyle titleStyle,
     TextStyle descriptionStyle,
+    TextOverflow textOverflow,
+    int maxLines,
   }) {
     return RowItem(
       key: key,
-      title: _buildText(
+      title: _Text(
         title,
         style: titleStyle,
         textAlign: TextAlign.start,
+        textOverflow: textOverflow,
+        maxLines: maxLines,
       ),
-      description: _buildText(
+      description: _Text(
         description,
         style: descriptionStyle,
         textAlign: TextAlign.end,
+        textOverflow: textOverflow,
+        maxLines: maxLines,
       ),
     );
   }
@@ -87,23 +93,27 @@ class RowItem extends StatelessWidget {
   /// value with a boolean value, which can be represented with an icon.
   factory RowItem.boolean(
     String title,
-    bool icon, {
+    bool value, {
     Key key,
     TextStyle titleStyle,
+    TextOverflow textOverflow,
+    int maxLines,
     Color iconColor,
-    double iconSize = 17,
+    double iconSize = 19,
   }) {
     return RowItem(
       key: key,
-      title: _buildText(
+      title: _Text(
         title,
         style: titleStyle,
         textAlign: TextAlign.start,
+        textOverflow: textOverflow,
+        maxLines: maxLines,
       ),
-      description: _buildIcon(
-        icon,
-        iconColor: iconColor,
-        iconSize: iconSize,
+      description: _Icon(
+        properties: _IconProperties.fromBoolean(value),
+        color: iconColor,
+        size: iconSize,
       ),
     );
   }
@@ -116,54 +126,94 @@ class RowItem extends StatelessWidget {
     Key key,
     TextStyle titleStyle,
     TextStyle descriptionStyle,
+    TextOverflow textOverflow,
+    int maxLines,
     VoidCallback onTap,
   }) {
     return RowItem(
       key: key,
-      title: _buildText(
+      title: _Text(
         title,
         style: titleStyle,
         textAlign: TextAlign.start,
+        textOverflow: textOverflow,
+        maxLines: maxLines,
       ),
       description: InkResponse(
         onTap: onTap,
-        child: _buildText(
+        child: _Text(
           description,
           style: descriptionStyle,
           textAlign: TextAlign.end,
+          textOverflow: textOverflow,
+          maxLines: maxLines,
           clickable: onTap != null,
         ),
       ),
     );
   }
+}
 
-  /// Returns an icon based on the [value] variable.
-  /// Various [Icon] parameters can be set as well.
-  static Icon _buildIcon(bool value, {Color iconColor, double iconSize}) {
-    final _IconProperties data = _IconProperties.fromBoolean(value);
+/// Returns an icon based on the [value] variable.
+/// Various [Icon] parameters can be set as well.
+class _Icon extends StatelessWidget {
+  final _IconProperties properties;
+  final Color color;
+  final double size;
+
+  const _Icon({
+    Key key,
+    this.properties,
+    this.color,
+    this.size,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Icon(
-      data.icon,
-      color: iconColor ?? data.color,
-      size: iconSize,
+      properties.icon,
+      color: color ?? properties.color,
+      size: size,
     );
   }
+}
 
-  /// Returns a [Text] widget, using the [text] variable.
-  /// It checks if can be clickable, with the [clickable] parameter.
-  /// Various of its paremeters can be set.
-  static Text _buildText(
-    String text, {
-    TextStyle style,
-    bool clickable = false,
-    @required TextAlign textAlign,
-  }) {
+/// Returns a [Text] widget, using the [text] variable.
+/// It checks if can be clickable, with the [clickable] parameter.
+/// Various of its paremeters can be set.
+class _Text extends StatelessWidget {
+  final String data;
+  final TextStyle style;
+  final bool clickable;
+  final TextAlign textAlign;
+  final TextOverflow textOverflow;
+  final int maxLines;
+
+  const _Text(
+    this.data, {
+    Key key,
+    this.style,
+    this.clickable = false,
+    this.textAlign,
+    this.textOverflow,
+    this.maxLines,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Text(
-      text,
-      overflow: TextOverflow.ellipsis,
+      data,
+      overflow: textOverflow ?? TextOverflow.ellipsis,
+      maxLines: maxLines,
       textAlign: textAlign,
-      style: TextStyle(
-        decoration: clickable ? TextDecoration.underline : TextDecoration.none,
-      ).merge(style),
+      style: Theme.of(context)
+          .textTheme
+          .subtitle1
+          .copyWith(
+            decoration:
+                clickable ? TextDecoration.underline : TextDecoration.none,
+          )
+          .merge(style),
     );
   }
 }
