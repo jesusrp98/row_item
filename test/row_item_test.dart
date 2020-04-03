@@ -2,13 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:row_item/row_item.dart';
 
-void main() {
-  Widget makeWidgetTestable(Widget child) =>
-      MaterialApp(home: Scaffold(body: child));
+class TestPage extends StatelessWidget {
+  final Widget test;
 
-  testWidgets('RowItem displays correct text', (tester) async {
+  const TestPage(this.test);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar'),
+          ),
+          body: test,
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  testWidgets('RowItem displays custom widgets correctly', (tester) async {
     await tester.pumpWidget(
-      makeWidgetTestable(
+      TestPage(
         RowItem(
           title: Text('title'),
           description: Text('description'),
@@ -22,25 +39,35 @@ void main() {
 
   testWidgets('RowItem.text displays correct text', (tester) async {
     await tester.pumpWidget(
-      makeWidgetTestable(
-        RowItem.text(
-          'title',
-          'description',
-        ),
+      TestPage(
+        RowItem.text('title', 'description'),
       ),
     );
 
     expect(find.text('title'), findsOneWidget);
     expect(find.text('description'), findsOneWidget);
+
+    final title = tester.widget<Text>(find.text('title'));
+    final description = tester.widget<Text>(find.text('description'));
+
+    expect(title.textAlign, TextAlign.start);
+    expect(description.textAlign, TextAlign.end);
   });
+
+  testWidgets(
+    'RowItem.text pulls default settings correctly',
+    (tester) async {},
+  );
+
+  testWidgets(
+    'RowItem.text applies custom settings correctly',
+    (tester) async {},
+  );
 
   testWidgets('RowItem.boolean displays correct text & icon', (tester) async {
     await tester.pumpWidget(
-      makeWidgetTestable(
-        RowItem.boolean(
-          'true',
-          true,
-        ),
+      TestPage(
+        RowItem.boolean('true', true),
       ),
     );
 
@@ -48,11 +75,8 @@ void main() {
     expect(find.byIcon(Icons.check_circle), findsOneWidget);
 
     await tester.pumpWidget(
-      makeWidgetTestable(
-        RowItem.boolean(
-          'false',
-          false,
-        ),
+      TestPage(
+        RowItem.boolean('false', false),
       ),
     );
 
@@ -60,11 +84,8 @@ void main() {
     expect(find.byIcon(Icons.cancel), findsOneWidget);
 
     await tester.pumpWidget(
-      makeWidgetTestable(
-        RowItem.boolean(
-          'null',
-          null,
-        ),
+      TestPage(
+        RowItem.boolean('null', null),
       ),
     );
 
@@ -72,39 +93,44 @@ void main() {
     expect(find.byIcon(Icons.help), findsOneWidget);
   });
 
-  testWidgets(
-    'RowItem.tap displays correct text & dialog',
-    (tester) async {
-      bool pressed1 = false, pressed2 = false;
+  testWidgets('RowItem.boolean pulls default settings', (tester) async {});
 
+  testWidgets('RowItem.boolean applies custom settings', (tester) async {});
+
+  testWidgets(
+    'RowItem.tap displays text correctly',
+    (tester) async {
       await tester.pumpWidget(
-        makeWidgetTestable(
+        TestPage(
           RowItem.tap(
             'title1',
             'description1',
-            onTap: () => pressed1 = true,
+            onTap: () => print("hello"),
           ),
         ),
       );
 
       expect(find.text('title1'), findsOneWidget);
       expect(find.text('description1'), findsOneWidget);
-      await tester.tap(find.text('description1'));
-      expect(pressed1, isTrue);
 
       await tester.pumpWidget(
-        makeWidgetTestable(
+        TestPage(
           RowItem.tap(
             'title2',
             'description2',
+            onTap: null,
           ),
         ),
       );
 
       expect(find.text('title2'), findsOneWidget);
       expect(find.text('description2'), findsOneWidget);
-      await tester.tap(find.text('description2'));
-      expect(pressed2, isFalse);
     },
   );
+
+  testWidgets('RowItem.tap pulls default settings', (tester) async {});
+
+  testWidgets('RowItem.tap applies custom settings', (tester) async {});
+
+  testWidgets('Checks RowItem.tap "onTap" works correctly', (tester) async {});
 }
