@@ -201,19 +201,18 @@ class _Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      data,
-      overflow: textOverflow ?? TextOverflow.ellipsis,
-      maxLines: maxLines,
-      textAlign: textAlign,
-      style: Theme.of(context)
-          .textTheme
-          .subtitle1
-          .copyWith(
+    return DefaultTextStyle(
+      style: Theme.of(context).textTheme.subtitle1.copyWith(
             decoration:
                 clickable ? TextDecoration.underline : TextDecoration.none,
-          )
-          .merge(style),
+          ),
+      child: Text(
+        data,
+        overflow: textOverflow ?? TextOverflow.ellipsis,
+        maxLines: maxLines,
+        textAlign: textAlign,
+        style: style,
+      ),
     );
   }
 }
