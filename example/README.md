@@ -82,12 +82,17 @@ class HomePage extends StatelessWidget {
                 child: Column(children: <Widget>[
                   RowItem.boolean('Firefox', true),
                   _spacer,
-                  RowItem.boolean('Chrome', false),
+                  RowItem.boolean(
+                    'Chrome',
+                    false,
+                    outline: true,
+                  ),
                   _spacer,
                   RowItem.boolean(
                     'Firefox',
                     true,
                     iconColor: Theme.of(context).accentColor,
+                    outline: true,
                   ),
                   _spacer,
                   RowItem.boolean(
