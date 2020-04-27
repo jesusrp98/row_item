@@ -11,12 +11,23 @@ class _IconProperties {
 
   const _IconProperties(this.icon, this.color);
 
-  factory _IconProperties.fromBoolean(bool value) => _props[value];
+  factory _IconProperties.fromBoolean(bool value, {bool outline}) =>
+      outline == true ? outlineProps[value] : props[value];
 
-  static Map<bool, _IconProperties> _props = {
-    true: _IconProperties(Icons.check_circle, Colors.green),
-    false: _IconProperties(Icons.cancel, Colors.red),
-    null: _IconProperties(Icons.help, Colors.blueGrey),
+  static Color validColor = Colors.green;
+  static Color invalidColor = Colors.red;
+  static Color unknownColor = Colors.blueGrey;
+
+  static Map<bool, _IconProperties> props = {
+    true: _IconProperties(Icons.check_circle, validColor),
+    false: _IconProperties(Icons.cancel, invalidColor),
+    null: _IconProperties(Icons.help, unknownColor),
+  };
+
+  static Map<bool, _IconProperties> outlineProps = {
+    true: _IconProperties(Icons.check_circle_outline, Colors.green),
+    false: _IconProperties(Icons.highlight_off, Colors.red),
+    null: _IconProperties(Icons.help_outline, Colors.blueGrey),
   };
 }
 
@@ -100,6 +111,7 @@ class RowItem extends StatelessWidget {
     int maxLines,
     Color iconColor,
     double iconSize = 19,
+    bool outline = false,
   }) {
     return RowItem(
       key: key,
@@ -111,7 +123,10 @@ class RowItem extends StatelessWidget {
         maxLines: maxLines,
       ),
       description: _Icon(
-        properties: _IconProperties.fromBoolean(value),
+        properties: _IconProperties.fromBoolean(
+          value,
+          outline: outline,
+        ),
         color: iconColor,
         size: iconSize,
       ),
