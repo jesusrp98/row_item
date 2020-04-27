@@ -157,6 +157,50 @@ void main() {
     expect(find.byIcon(Icons.help), findsOneWidget);
   });
 
+  testWidgets(
+    'RowItem.boolean displays correct text & outlined icon',
+    (tester) async {
+      await tester.pumpWidget(
+        TestPage(
+          RowItem.boolean(
+            'true',
+            true,
+            outline: true,
+          ),
+        ),
+      );
+
+      expect(find.text('true'), findsOneWidget);
+      expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+
+      await tester.pumpWidget(
+        TestPage(
+          RowItem.boolean(
+            'false',
+            false,
+            outline: true,
+          ),
+        ),
+      );
+
+      expect(find.text('false'), findsOneWidget);
+      expect(find.byIcon(Icons.highlight_off), findsOneWidget);
+
+      await tester.pumpWidget(
+        TestPage(
+          RowItem.boolean(
+            'null',
+            null,
+            outline: true,
+          ),
+        ),
+      );
+
+      expect(find.text('null'), findsOneWidget);
+      expect(find.byIcon(Icons.help_outline), findsOneWidget);
+    },
+  );
+
   testWidgets('RowItem.boolean pulls default settings', (tester) async {
     await tester.pumpWidget(
       TestPage(
