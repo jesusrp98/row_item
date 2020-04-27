@@ -1,4 +1,4 @@
-## [1.2.0] - April 27th, 2020
+## [1.2.0+1] - April 27th, 2020
 
 - Added `outline` parameter inside `RowItem.boolean` (false by default).
 
