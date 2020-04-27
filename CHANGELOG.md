@@ -1,3 +1,7 @@
+## [1.2.0] - April 27th, 2020
+
+- Added `outline` parameter inside `RowItem.boolean` (false by default).
+
 ## [1.1.0] - April 4th, 2020
 
 - Added new default text style.

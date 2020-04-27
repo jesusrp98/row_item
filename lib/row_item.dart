@@ -102,6 +102,7 @@ class RowItem extends StatelessWidget {
 
   /// Builds a 'text-to-boolean' widget. Useful when the associated
   /// value with a boolean value, which can be represented with an icon.
+  /// You can select outlined icons using the [outline] parameter.
   factory RowItem.boolean(
     String title,
     bool value, {
