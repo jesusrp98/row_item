@@ -46,6 +46,8 @@ RowItem.text(
 
 You can show a boolean state (`true`, `false` or `null`) using this variant of the widget. Color and size of the icon placed inside the description place are both customizable.
 
+Use the `outline` parameter to use the outlined version of each icon, instead of the default one.
+
 ```
 RowItem.boolean(
   'Displays a checked icon',
@@ -83,4 +85,4 @@ For help getting started with Flutter, view our [online documentation](https://f
 
 ## License
 
-This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the GNU GPL v3 License - see the [LICENSE](LICENSE) file for details.
