@@ -1,3 +1,7 @@
+## [1.2.0+2] - January 17th, 2021
+
+- Increased test coverage.
+
 ## [1.2.0+1] - April 27th, 2020
 
 - Added `outline` parameter inside `RowItem.boolean` (false by default).

@@ -23,6 +23,14 @@ class TestPage extends StatelessWidget {
 }
 
 void main() {
+  group('Argument testing', () {
+    test('check argument assertion', () {
+      expect(() => RowItem(), throwsAssertionError);
+      expect(() => RowItem(title: SizedBox()), throwsAssertionError);
+      expect(() => RowItem(description: SizedBox()), throwsAssertionError);
+    });
+  });
+
   group('RowItem', () {
     testWidgets('RowItem displays custom widgets correctly', (tester) async {
       await tester.pumpWidget(
