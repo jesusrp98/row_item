@@ -25,8 +25,11 @@ class TestPage extends StatelessWidget {
 void main() {
   group('Argument testing', () {
     test('check argument assertion', () {
+      // ignore: missing_required_param
       expect(() => RowItem(), throwsAssertionError);
+      // ignore: missing_required_param
       expect(() => RowItem(title: SizedBox()), throwsAssertionError);
+      // ignore: missing_required_param
       expect(() => RowItem(description: SizedBox()), throwsAssertionError);
     });
   });

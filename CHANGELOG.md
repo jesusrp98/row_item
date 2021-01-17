@@ -1,4 +1,4 @@
-## [1.2.0+2] - January 17th, 2021
+## [1.2.0+3] - January 17th, 2021
 
 - Increased test coverage.
 

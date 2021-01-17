@@ -218,7 +218,7 @@ class _Text extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.subhead.copyWith(
+      style: Theme.of(context).textTheme.subtitle1.copyWith(
             decoration:
                 clickable ? TextDecoration.underline : TextDecoration.none,
           ),
