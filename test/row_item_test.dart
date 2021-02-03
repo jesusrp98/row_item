@@ -97,10 +97,10 @@ void main() {
               .first,
         );
 
-        expect(titleStyle.style.fontSize, 16);
+        expect(titleStyle.style.fontSize, 14);
         expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-        expect(descriptionStyle.style.fontSize, 16);
+        expect(descriptionStyle.style.fontSize, 14);
         expect(descriptionStyle.style.fontWeight, FontWeight.w400);
       },
     );
@@ -146,7 +146,11 @@ void main() {
     testWidgets('RowItem.boolean displays correct text & icon', (tester) async {
       await tester.pumpWidget(
         TestPage(
-          RowItem.boolean('true', true),
+          RowItem.boolean(
+            'true',
+            true,
+            iconStyle: IconBooleanStyle.filled,
+          ),
         ),
       );
 
@@ -155,7 +159,11 @@ void main() {
 
       await tester.pumpWidget(
         TestPage(
-          RowItem.boolean('false', false),
+          RowItem.boolean(
+            'false',
+            false,
+            iconStyle: IconBooleanStyle.filled,
+          ),
         ),
       );
 
@@ -164,7 +172,11 @@ void main() {
 
       await tester.pumpWidget(
         TestPage(
-          RowItem.boolean('null', null),
+          RowItem.boolean(
+            'null',
+            null,
+            iconStyle: IconBooleanStyle.filled,
+          ),
         ),
       );
 
@@ -177,11 +189,7 @@ void main() {
       (tester) async {
         await tester.pumpWidget(
           TestPage(
-            RowItem.boolean(
-              'true',
-              true,
-              outline: true,
-            ),
+            RowItem.boolean('true', true),
           ),
         );
 
@@ -190,11 +198,7 @@ void main() {
 
         await tester.pumpWidget(
           TestPage(
-            RowItem.boolean(
-              'false',
-              false,
-              outline: true,
-            ),
+            RowItem.boolean('false', false),
           ),
         );
 
@@ -203,11 +207,7 @@ void main() {
 
         await tester.pumpWidget(
           TestPage(
-            RowItem.boolean(
-              'null',
-              null,
-              outline: true,
-            ),
+            RowItem.boolean('null', null),
           ),
         );
 
@@ -231,12 +231,12 @@ void main() {
             )
             .first,
       );
-      var icon = tester.widget<Icon>(find.byIcon(Icons.check_circle));
+      var icon = tester.widget<Icon>(find.byIcon(Icons.check_circle_outline));
 
-      expect(titleStyle.style.fontSize, 16);
+      expect(titleStyle.style.fontSize, 14);
       expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-      expect(icon.size, 19);
+      expect(icon.size, 18);
       expect(icon.color, Colors.green);
 
       await tester.pumpWidget(
@@ -253,12 +253,12 @@ void main() {
             )
             .first,
       );
-      icon = tester.widget<Icon>(find.byIcon(Icons.cancel));
+      icon = tester.widget<Icon>(find.byIcon(Icons.highlight_off));
 
-      expect(titleStyle.style.fontSize, 16);
+      expect(titleStyle.style.fontSize, 14);
       expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-      expect(icon.size, 19);
+      expect(icon.size, 18);
       expect(icon.color, Colors.red);
 
       await tester.pumpWidget(
@@ -275,12 +275,12 @@ void main() {
             )
             .first,
       );
-      icon = tester.widget<Icon>(find.byIcon(Icons.help));
+      icon = tester.widget<Icon>(find.byIcon(Icons.help_outline));
 
-      expect(titleStyle.style.fontSize, 16);
+      expect(titleStyle.style.fontSize, 14);
       expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-      expect(icon.size, 19);
+      expect(icon.size, 18);
       expect(icon.color, Colors.blueGrey);
     });
 
@@ -303,7 +303,7 @@ void main() {
       );
 
       var title = tester.widget<Text>(find.text('true'));
-      var icon = tester.widget<Icon>(find.byIcon(Icons.check_circle));
+      var icon = tester.widget<Icon>(find.byIcon(Icons.check_circle_outline));
 
       expect(title.style.fontSize, 20);
       expect(title.style.color, Colors.red);
@@ -331,7 +331,7 @@ void main() {
       );
 
       title = tester.widget<Text>(find.text('false'));
-      icon = tester.widget<Icon>(find.byIcon(Icons.cancel));
+      icon = tester.widget<Icon>(find.byIcon(Icons.highlight_off));
 
       expect(title.style.fontSize, 20);
       expect(title.style.color, Colors.red);
@@ -359,7 +359,7 @@ void main() {
       );
 
       title = tester.widget<Text>(find.text('null'));
-      icon = tester.widget<Icon>(find.byIcon(Icons.help));
+      icon = tester.widget<Icon>(find.byIcon(Icons.help_outline));
 
       expect(title.style.fontSize, 20);
       expect(title.style.color, Colors.red);
@@ -431,10 +431,10 @@ void main() {
             .first,
       );
 
-      expect(titleStyle.style.fontSize, 16);
+      expect(titleStyle.style.fontSize, 14);
       expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-      expect(descriptionStyle.style.fontSize, 16);
+      expect(descriptionStyle.style.fontSize, 14);
       expect(descriptionStyle.style.fontWeight, FontWeight.w400);
       expect(descriptionStyle.style.decoration, TextDecoration.underline);
 
@@ -466,10 +466,10 @@ void main() {
             .first,
       );
 
-      expect(titleStyle.style.fontSize, 16);
+      expect(titleStyle.style.fontSize, 14);
       expect(titleStyle.style.fontWeight, FontWeight.w400);
 
-      expect(descriptionStyle.style.fontSize, 16);
+      expect(descriptionStyle.style.fontSize, 14);
       expect(descriptionStyle.style.fontWeight, FontWeight.w400);
       expect(descriptionStyle.style.decoration, TextDecoration.none);
     });
