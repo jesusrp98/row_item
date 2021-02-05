@@ -1,3 +1,9 @@
+## [1.3.0] - February 5th, 2021
+
+- **BREAKING CHANGE**: updated `RowItem.boolean` icon style parameter: use `IconBooleanStyle`.
+- Updated default text style to `bodyText2`.
+- Updated defualt description text color to `caption.color`.
+
 ## [1.2.0+3] - January 17th, 2021
 
 - Increased test coverage.
