@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Enum variable that is used for determinate icon style inside
+/// a [RowItem.boolean] widget.
+enum IconBooleanStyle { filled, outlined }
+
 /// Defines icon properties, used mostly inside a [RowItem.boolean] widget.
 /// These properties are [Color] and [IconData].
 ///
@@ -11,23 +15,24 @@ class _IconProperties {
 
   const _IconProperties(this.icon, this.color);
 
-  factory _IconProperties.fromBoolean(bool value, {bool outline}) =>
-      outline == true ? outlineProps[value] : props[value];
+  factory _IconProperties.fromBoolean(bool value, {IconBooleanStyle style}) =>
+      props[style][value];
 
   static Color validColor = Colors.green;
   static Color invalidColor = Colors.red;
   static Color unknownColor = Colors.blueGrey;
 
-  static Map<bool, _IconProperties> props = {
-    true: _IconProperties(Icons.check_circle, validColor),
-    false: _IconProperties(Icons.cancel, invalidColor),
-    null: _IconProperties(Icons.help, unknownColor),
-  };
-
-  static Map<bool, _IconProperties> outlineProps = {
-    true: _IconProperties(Icons.check_circle_outline, Colors.green),
-    false: _IconProperties(Icons.highlight_off, Colors.red),
-    null: _IconProperties(Icons.help_outline, Colors.blueGrey),
+  static Map<IconBooleanStyle, Map<bool, _IconProperties>> props = {
+    IconBooleanStyle.filled: {
+      true: _IconProperties(Icons.check_circle, validColor),
+      false: _IconProperties(Icons.cancel, invalidColor),
+      null: _IconProperties(Icons.help, unknownColor),
+    },
+    IconBooleanStyle.outlined: {
+      true: _IconProperties(Icons.check_circle_outline, Colors.green),
+      false: _IconProperties(Icons.highlight_off, Colors.red),
+      null: _IconProperties(Icons.help_outline, Colors.blueGrey),
+    },
   };
 }
 
@@ -96,6 +101,7 @@ class RowItem extends StatelessWidget {
         textAlign: TextAlign.end,
         textOverflow: textOverflow,
         maxLines: maxLines,
+        useDefaultDescriptionColor: true,
       ),
     );
   }
@@ -111,8 +117,8 @@ class RowItem extends StatelessWidget {
     TextOverflow textOverflow,
     int maxLines,
     Color iconColor,
-    double iconSize = 19,
-    bool outline = false,
+    double iconSize = 18,
+    IconBooleanStyle iconStyle = IconBooleanStyle.outlined,
   }) {
     return RowItem(
       key: key,
@@ -126,7 +132,7 @@ class RowItem extends StatelessWidget {
       description: _Icon(
         properties: _IconProperties.fromBoolean(
           value,
-          outline: outline,
+          style: iconStyle,
         ),
         color: iconColor,
         size: iconSize,
@@ -164,6 +170,7 @@ class RowItem extends StatelessWidget {
           textOverflow: textOverflow,
           maxLines: maxLines,
           clickable: onTap != null,
+          useDefaultDescriptionColor: true,
         ),
       ),
     );
@@ -204,6 +211,7 @@ class _Text extends StatelessWidget {
   final TextAlign textAlign;
   final TextOverflow textOverflow;
   final int maxLines;
+  final bool useDefaultDescriptionColor;
 
   const _Text(
     this.data, {
@@ -213,12 +221,16 @@ class _Text extends StatelessWidget {
     this.textAlign,
     this.textOverflow,
     this.maxLines,
+    this.useDefaultDescriptionColor = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.subtitle1.copyWith(
+      style: Theme.of(context).textTheme.bodyText2.copyWith(
+            color: useDefaultDescriptionColor
+                ? Theme.of(context).textTheme.caption.color
+                : null,
             decoration:
                 clickable ? TextDecoration.underline : TextDecoration.none,
           ),

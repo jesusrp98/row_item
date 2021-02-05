@@ -84,14 +84,14 @@ class HomePage extends StatelessWidget {
                   RowItem.boolean(
                     'Chrome',
                     false,
-                    outline: true,
+                    iconStyle: IconBooleanStyle.filled,
                   ),
                   _spacer,
                   RowItem.boolean(
                     'Firefox',
                     true,
                     iconColor: Theme.of(context).accentColor,
-                    outline: true,
+                    iconStyle: IconBooleanStyle.filled,
                   ),
                   _spacer,
                   RowItem.boolean(
