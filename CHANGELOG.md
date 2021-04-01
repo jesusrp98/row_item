@@ -1,3 +1,7 @@
+## [2.0.0] - April 1st, 2021
+
+* Migrated to null-safety.
+
 ## [1.3.0] - February 5th, 2021
 
 - **BREAKING CHANGE**: updated `RowItem.boolean` icon style parameter: use `IconBooleanStyle`.

@@ -15,14 +15,14 @@ class _IconProperties {
 
   const _IconProperties(this.icon, this.color);
 
-  factory _IconProperties.fromBoolean(bool value, {IconBooleanStyle style}) =>
-      props[style][value];
+  factory _IconProperties.fromBoolean(bool? value, {IconBooleanStyle? style}) =>
+      props[style!]![value]!;
 
   static Color validColor = Colors.green;
   static Color invalidColor = Colors.red;
   static Color unknownColor = Colors.blueGrey;
 
-  static Map<IconBooleanStyle, Map<bool, _IconProperties>> props = {
+  static Map<IconBooleanStyle, Map<bool?, _IconProperties>> props = {
     IconBooleanStyle.filled: {
       true: _IconProperties(Icons.check_circle, validColor),
       false: _IconProperties(Icons.cancel, invalidColor),
@@ -47,12 +47,10 @@ class RowItem extends StatelessWidget {
   final Widget description;
 
   const RowItem({
-    Key key,
-    @required this.title,
-    @required this.description,
-  })  : assert(title != null),
-        assert(description != null),
-        super(key: key);
+    Key? key,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +78,11 @@ class RowItem extends StatelessWidget {
   factory RowItem.text(
     String title,
     String description, {
-    Key key,
-    TextStyle titleStyle,
-    TextStyle descriptionStyle,
-    TextOverflow textOverflow,
-    int maxLines,
+    Key? key,
+    TextStyle? titleStyle,
+    TextStyle? descriptionStyle,
+    TextOverflow? textOverflow,
+    int? maxLines,
   }) {
     return RowItem(
       key: key,
@@ -111,12 +109,12 @@ class RowItem extends StatelessWidget {
   /// You can select outlined icons using the [outline] parameter.
   factory RowItem.boolean(
     String title,
-    bool value, {
-    Key key,
-    TextStyle titleStyle,
-    TextOverflow textOverflow,
-    int maxLines,
-    Color iconColor,
+    bool? value, {
+    Key? key,
+    TextStyle? titleStyle,
+    TextOverflow? textOverflow,
+    int? maxLines,
+    Color? iconColor,
     double iconSize = 18,
     IconBooleanStyle iconStyle = IconBooleanStyle.outlined,
   }) {
@@ -145,12 +143,12 @@ class RowItem extends StatelessWidget {
   factory RowItem.tap(
     String title,
     String description, {
-    Key key,
-    TextStyle titleStyle,
-    TextStyle descriptionStyle,
-    TextOverflow textOverflow,
-    int maxLines,
-    VoidCallback onTap,
+    Key? key,
+    TextStyle? titleStyle,
+    TextStyle? descriptionStyle,
+    TextOverflow? textOverflow,
+    int? maxLines,
+    VoidCallback? onTap,
   }) {
     return RowItem(
       key: key,
@@ -180,12 +178,12 @@ class RowItem extends StatelessWidget {
 /// Returns an icon based on the [value] variable.
 /// Various [Icon] parameters can be set as well.
 class _Icon extends StatelessWidget {
-  final _IconProperties properties;
-  final Color color;
-  final double size;
+  final _IconProperties? properties;
+  final Color? color;
+  final double? size;
 
   const _Icon({
-    Key key,
+    Key? key,
     this.properties,
     this.color,
     this.size,
@@ -194,8 +192,8 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      properties.icon,
-      color: color ?? properties.color,
+      properties!.icon,
+      color: color ?? properties!.color,
       size: size,
     );
   }
@@ -206,16 +204,16 @@ class _Icon extends StatelessWidget {
 /// Various of its paremeters can be set.
 class _Text extends StatelessWidget {
   final String data;
-  final TextStyle style;
+  final TextStyle? style;
   final bool clickable;
-  final TextAlign textAlign;
-  final TextOverflow textOverflow;
-  final int maxLines;
+  final TextAlign? textAlign;
+  final TextOverflow? textOverflow;
+  final int? maxLines;
   final bool useDefaultDescriptionColor;
 
   const _Text(
     this.data, {
-    Key key,
+    Key? key,
     this.style,
     this.clickable = false,
     this.textAlign,
@@ -227,9 +225,9 @@ class _Text extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.bodyText2.copyWith(
+      style: Theme.of(context).textTheme.bodyText2!.copyWith(
             color: useDefaultDescriptionColor
-                ? Theme.of(context).textTheme.caption.color
+                ? Theme.of(context).textTheme.caption!.color
                 : null,
             decoration:
                 clickable ? TextDecoration.underline : TextDecoration.none,

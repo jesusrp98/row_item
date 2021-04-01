@@ -23,17 +23,6 @@ class TestPage extends StatelessWidget {
 }
 
 void main() {
-  group('Argument testing', () {
-    test('check argument assertion', () {
-      // ignore: missing_required_param
-      expect(() => RowItem(), throwsAssertionError);
-      // ignore: missing_required_param
-      expect(() => RowItem(title: SizedBox()), throwsAssertionError);
-      // ignore: missing_required_param
-      expect(() => RowItem(description: SizedBox()), throwsAssertionError);
-    });
-  });
-
   group('RowItem', () {
     testWidgets('RowItem displays custom widgets correctly', (tester) async {
       await tester.pumpWidget(
@@ -130,13 +119,13 @@ void main() {
         final title = tester.widget<Text>(find.text('title'));
         final description = tester.widget<Text>(find.text('description'));
 
-        expect(title.style.fontSize, 20);
-        expect(title.style.color, Colors.red);
+        expect(title.style!.fontSize, 20);
+        expect(title.style!.color, Colors.red);
         expect(title.overflow, TextOverflow.fade);
         expect(title.maxLines, 2);
 
-        expect(description.style.fontSize, 19);
-        expect(description.style.color, Colors.blue);
+        expect(description.style!.fontSize, 19);
+        expect(description.style!.color, Colors.blue);
         expect(description.overflow, TextOverflow.fade);
         expect(description.maxLines, 2);
       },
@@ -305,8 +294,8 @@ void main() {
       var title = tester.widget<Text>(find.text('true'));
       var icon = tester.widget<Icon>(find.byIcon(Icons.check_circle_outline));
 
-      expect(title.style.fontSize, 20);
-      expect(title.style.color, Colors.red);
+      expect(title.style!.fontSize, 20);
+      expect(title.style!.color, Colors.red);
       expect(title.overflow, TextOverflow.fade);
       expect(title.maxLines, 2);
 
@@ -333,8 +322,8 @@ void main() {
       title = tester.widget<Text>(find.text('false'));
       icon = tester.widget<Icon>(find.byIcon(Icons.highlight_off));
 
-      expect(title.style.fontSize, 20);
-      expect(title.style.color, Colors.red);
+      expect(title.style!.fontSize, 20);
+      expect(title.style!.color, Colors.red);
       expect(title.overflow, TextOverflow.fade);
       expect(title.maxLines, 2);
 
@@ -361,8 +350,8 @@ void main() {
       title = tester.widget<Text>(find.text('null'));
       icon = tester.widget<Icon>(find.byIcon(Icons.help_outline));
 
-      expect(title.style.fontSize, 20);
-      expect(title.style.color, Colors.red);
+      expect(title.style!.fontSize, 20);
+      expect(title.style!.color, Colors.red);
       expect(title.overflow, TextOverflow.fade);
       expect(title.maxLines, 2);
 
@@ -506,13 +495,13 @@ void main() {
             .first,
       );
 
-      expect(title.style.fontSize, 20);
-      expect(title.style.color, Colors.red);
+      expect(title.style!.fontSize, 20);
+      expect(title.style!.color, Colors.red);
       expect(title.overflow, TextOverflow.fade);
       expect(title.maxLines, 2);
 
-      expect(description.style.fontSize, 19);
-      expect(description.style.color, Colors.blue);
+      expect(description.style!.fontSize, 19);
+      expect(description.style!.color, Colors.blue);
       expect(description.overflow, TextOverflow.fade);
       expect(description.maxLines, 2);
       expect(descriptionStyle.style.decoration, TextDecoration.underline);
@@ -548,13 +537,13 @@ void main() {
             .first,
       );
 
-      expect(title.style.fontSize, 20);
-      expect(title.style.color, Colors.red);
+      expect(title.style!.fontSize, 20);
+      expect(title.style!.color, Colors.red);
       expect(title.overflow, TextOverflow.fade);
       expect(title.maxLines, 2);
 
-      expect(description.style.fontSize, 19);
-      expect(description.style.color, Colors.blue);
+      expect(description.style!.fontSize, 19);
+      expect(description.style!.color, Colors.blue);
       expect(description.overflow, TextOverflow.fade);
       expect(description.maxLines, 2);
       expect(descriptionStyle.style.decoration, TextDecoration.none);
