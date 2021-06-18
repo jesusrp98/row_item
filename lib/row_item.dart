@@ -159,7 +159,7 @@ class RowItem extends StatelessWidget {
         textOverflow: textOverflow,
         maxLines: maxLines,
       ),
-      description: InkResponse(
+      description: InkWell(
         onTap: onTap,
         child: _Text(
           description,

@@ -1,3 +1,7 @@
+## [2.0.1] - June 19th, 2021
+
+* Update `RowItem.tap` click style.
+
 ## [2.0.0] - April 1st, 2021
 
 * Migrated to null-safety.
