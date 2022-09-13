@@ -1,3 +1,7 @@
+## [2.1.0] - September 13rd, 2022
+
+- **BREAKING CHANGE:** Set min Flutter version to 3.3.0.
+
 ## [2.0.1] - June 19th, 2021
 
 * Update `RowItem.tap` click style.

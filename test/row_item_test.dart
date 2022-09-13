@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:row_item/row_item.dart';
@@ -5,7 +7,7 @@ import 'package:row_item/row_item.dart';
 class TestPage extends StatelessWidget {
   final Widget test;
 
-  const TestPage(this.test);
+  const TestPage(this.test, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class TestPage extends StatelessWidget {
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
-            title: Text('AppBar'),
+            title: const Text('AppBar'),
           ),
           body: test,
         ),
@@ -26,7 +28,7 @@ void main() {
   group('RowItem', () {
     testWidgets('RowItem displays custom widgets correctly', (tester) async {
       await tester.pumpWidget(
-        TestPage(
+        const TestPage(
           RowItem(
             title: Text('title'),
             description: Text('description'),
@@ -104,11 +106,11 @@ void main() {
               'description',
               maxLines: 2,
               textOverflow: TextOverflow.fade,
-              titleStyle: TextStyle(
+              titleStyle: const TextStyle(
                 fontSize: 20,
                 color: Colors.red,
               ),
-              descriptionStyle: TextStyle(
+              descriptionStyle: const TextStyle(
                 fontSize: 19,
                 color: Colors.blue,
               ),
@@ -281,7 +283,7 @@ void main() {
             true,
             maxLines: 2,
             textOverflow: TextOverflow.fade,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 20,
               color: Colors.red,
             ),
@@ -309,7 +311,7 @@ void main() {
             false,
             maxLines: 2,
             textOverflow: TextOverflow.fade,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 20,
               color: Colors.red,
             ),
@@ -337,7 +339,7 @@ void main() {
             null,
             maxLines: 2,
             textOverflow: TextOverflow.fade,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 20,
               color: Colors.red,
             ),
@@ -471,11 +473,11 @@ void main() {
             'description1',
             maxLines: 2,
             textOverflow: TextOverflow.fade,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 20,
               color: Colors.red,
             ),
-            descriptionStyle: TextStyle(
+            descriptionStyle: const TextStyle(
               fontSize: 19,
               color: Colors.blue,
             ),
@@ -513,11 +515,11 @@ void main() {
             'description2',
             maxLines: 2,
             textOverflow: TextOverflow.fade,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 20,
               color: Colors.red,
             ),
-            descriptionStyle: TextStyle(
+            descriptionStyle: const TextStyle(
               fontSize: 19,
               color: Colors.blue,
             ),

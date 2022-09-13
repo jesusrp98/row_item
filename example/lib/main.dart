@@ -1,12 +1,16 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:row_item/row_item.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'row_item',
       home: HomePage(),
     );
@@ -14,21 +18,23 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  Widget get _spacer => SizedBox(height: 12);
-  Widget get _cardSpacer => SizedBox(height: 4);
+  const HomePage({super.key});
+
+  Widget get _spacer => const SizedBox(height: 12);
+  Widget get _cardSpacer => const SizedBox(height: 4);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Row item')),
+      appBar: AppBar(title: const Text('Row item')),
       body: ListView(
-        padding: EdgeInsets.all(8),
-        children: <Widget>[
-          Column(children: <Widget>[
+        padding: const EdgeInsets.all(8),
+        children: [
+          Column(children: [
             Card(
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(children: <Widget>[
+                padding: const EdgeInsets.all(8),
+                child: Column(children: [
                   RowItem.text('English', 'Hello'),
                   _spacer,
                   RowItem.text('Español', 'Hola'),
@@ -42,34 +48,38 @@ class HomePage extends StatelessWidget {
             _cardSpacer,
             Card(
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(children: <Widget>[
+                padding: const EdgeInsets.all(8),
+                child: Column(children: [
                   RowItem.text(
                     'English',
                     'Hello',
-                    titleStyle: TextStyle(color: Colors.blue),
-                    descriptionStyle: TextStyle(fontSize: 18),
+                    titleStyle: const TextStyle(color: Colors.blue),
+                    descriptionStyle: const TextStyle(fontSize: 18),
                   ),
                   _spacer,
                   RowItem.text(
                     'Español',
                     'Hola',
-                    titleStyle: TextStyle(color: Colors.red),
-                    descriptionStyle: TextStyle(fontWeight: FontWeight.bold),
+                    titleStyle: const TextStyle(color: Colors.red),
+                    descriptionStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   _spacer,
                   RowItem.text(
                     'English',
                     'Bye',
-                    titleStyle: TextStyle(color: Colors.blue),
-                    descriptionStyle: TextStyle(fontStyle: FontStyle.italic),
+                    titleStyle: const TextStyle(color: Colors.blue),
+                    descriptionStyle: const TextStyle(
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                   _spacer,
                   RowItem.text(
                     'Español',
                     'Adiós',
-                    titleStyle: TextStyle(color: Colors.red),
-                    descriptionStyle: TextStyle(letterSpacing: 3),
+                    titleStyle: const TextStyle(color: Colors.red),
+                    descriptionStyle: const TextStyle(letterSpacing: 3),
                   ),
                 ]),
               ),
@@ -77,8 +87,8 @@ class HomePage extends StatelessWidget {
             _cardSpacer,
             Card(
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(children: <Widget>[
+                padding: const EdgeInsets.all(8),
+                child: Column(children: [
                   RowItem.boolean('Firefox', true),
                   _spacer,
                   RowItem.boolean(
@@ -90,14 +100,14 @@ class HomePage extends StatelessWidget {
                   RowItem.boolean(
                     'Firefox',
                     true,
-                    iconColor: Theme.of(context).accentColor,
+                    iconColor: Theme.of(context).colorScheme.primary,
                     iconStyle: IconBooleanStyle.filled,
                   ),
                   _spacer,
                   RowItem.boolean(
                     'Chrome',
                     false,
-                    iconColor: Theme.of(context).accentColor,
+                    iconColor: Theme.of(context).colorScheme.primary,
                   ),
                 ]),
               ),
@@ -105,8 +115,8 @@ class HomePage extends StatelessWidget {
             _cardSpacer,
             Card(
               child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Column(children: <Widget>[
+                padding: const EdgeInsets.all(8),
+                child: Column(children: [
                   RowItem.tap(
                     'Android',
                     'Click here',
