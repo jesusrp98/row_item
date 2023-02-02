@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 /// Enum variable that is used for determinate icon style inside
-/// a [RowItem.boolean] widget.
+/// a `RowItem.boolean` widget.
 enum IconBooleanStyle { filled, outlined }
 
-/// Defines icon properties, used mostly inside a [RowItem.boolean] widget.
+/// Defines icon properties, used mostly inside a `RowItem.boolean` widget.
 /// These properties are [Color] and [IconData].
 ///
 /// There's also a named constructor, which builds an instance

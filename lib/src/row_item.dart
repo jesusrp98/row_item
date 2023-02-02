@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:row_item/src/icon_properties.dart';
 
+// ignore: lines_longer_than_80_chars
 /// This widget has been designed to represent a text, with its associated value.
 /// The [title] widget will be located at the left of the [RowItem] widget,
 /// and the [description] widget, at the right.
@@ -24,13 +25,13 @@ class RowItem extends StatelessWidget {
       children: [
         Expanded(
           child: Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: title,
           ),
         ),
         Expanded(
           child: Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: description,
           ),
         ),
@@ -71,9 +72,10 @@ class RowItem extends StatelessWidget {
 
   /// Builds a 'text-to-boolean' widget. Useful when the associated
   /// value with a boolean value, which can be represented with an icon.
-  /// You can select outlined icons using the [outline] parameter.
+  /// You can select outlined icons using the `outline` parameter.
   factory RowItem.boolean(
     String title,
+    // ignore: avoid_positional_boolean_parameters
     bool? value, {
     Key? key,
     TextStyle? titleStyle,
@@ -140,7 +142,7 @@ class RowItem extends StatelessWidget {
   }
 }
 
-/// Returns an icon based on the [value] variable.
+/// Returns an icon based on the `value` variable.
 /// Various [Icon] parameters can be set as well.
 class _Icon extends StatelessWidget {
   final IconProperties properties;
@@ -163,7 +165,7 @@ class _Icon extends StatelessWidget {
   }
 }
 
-/// Returns a [Text] widget, using the [text] variable.
+/// Returns a [Text] widget, using the `text` variable.
 /// It checks if can be clickable, with the [clickable] parameter.
 /// Various of its paremeters can be set.
 class _Text extends StatelessWidget {
@@ -188,9 +190,9 @@ class _Text extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             color: useDefaultDescriptionColor
-                ? Theme.of(context).textTheme.caption!.color
+                ? Theme.of(context).textTheme.bodySmall?.color
                 : null,
             decoration:
                 clickable ? TextDecoration.underline : TextDecoration.none,

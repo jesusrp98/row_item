@@ -1,3 +1,8 @@
+## [2.2.1] - February 2nd, 2023
+
+- Update default search page style to match Material 3.
+- Add `very_good_analysis` package.
+
 ## [2.1.0] - September 13rd, 2022
 
 - **BREAKING CHANGE:** Set min Flutter version to 3.3.0.

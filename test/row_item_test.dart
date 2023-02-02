@@ -384,7 +384,6 @@ void main() {
             RowItem.tap(
               'title2',
               'description2',
-              onTap: null,
             ),
           ),
         );
@@ -434,7 +433,6 @@ void main() {
           RowItem.tap(
             'title2',
             'description2',
-            onTap: null,
           ),
         ),
       );
@@ -523,7 +521,6 @@ void main() {
               fontSize: 19,
               color: Colors.blue,
             ),
-            onTap: null,
           ),
         ),
       );
@@ -552,7 +549,8 @@ void main() {
     });
 
     testWidgets('Checks RowItem.tap "onTap" works correctly', (tester) async {
-      bool pressed1 = false, pressed2 = false;
+      var pressed1 = false;
+      const pressed2 = false;
 
       await tester.pumpWidget(
         TestPage(
@@ -572,7 +570,6 @@ void main() {
           RowItem.tap(
             'title2',
             'description2',
-            onTap: null,
           ),
         ),
       );
