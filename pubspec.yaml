@@ -1,6 +1,6 @@
 name: row_item
 description: Display compat information by using two widgets separated inside a row widget.
-version: 2.2.1
+version: 2.2.1+1
 homepage: https://github.com/jesusrp98/row_item
 
 environment:

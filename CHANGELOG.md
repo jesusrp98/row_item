@@ -1,4 +1,4 @@
-## [2.2.1] - February 2nd, 2023
+## [2.2.1+1] - February 2nd, 2023
 
 - Update default search page style to match Material 3.
 - Add `very_good_analysis` package.
